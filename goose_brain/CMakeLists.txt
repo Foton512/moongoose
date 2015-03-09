@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project(goose_brains)
+find_package(OpenCV REQUIRED)
+add_executable(goose_brains main.cpp)
+target_link_libraries(goose_brains ${OpenCV_LIBS})
