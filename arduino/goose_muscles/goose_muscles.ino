@@ -1,10 +1,10 @@
 #include <Servo.h>
 
 // Pins
-static const int LeftMotorSpeedPin = 5;
-static const int LeftMotorDirectionPin = 4;
-static const int RightMotorSpeedPin = 6;
-static const int RightMotorDirectionPin = 7;
+static const int LeftMotorSpeedPin = 6;
+static const int LeftMotorDirectionPin = 7;
+static const int RightMotorSpeedPin = 5;
+static const int RightMotorDirectionPin = 4;
 static const int HorizontalServoPin = 9;
 
 static const int DistancePin = 0;
