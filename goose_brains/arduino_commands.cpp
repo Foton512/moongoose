@@ -12,35 +12,40 @@ TArduinoCommands::TArduinoCommands()
     : DeviceAddr("/dev/ttyACM0") // TODO: can be ttyACM1. select existing device automatically
 {
     system("stty -F /dev/ttyACM0 cs8 9600 ignbrk -brkint -icrnl -imaxbel -opost -onlcr -isig -icanon -iexten -echo -echoe -echok -echoctl -echoke noflsh -ixon -crtscts");
-    //OutputStream = make_shared<ofstream>(DeviceAddr);
-    //if (!*OutputStream)
-    //    cout << "Can't open " << DeviceAddr << ". Maybe you should execute sudo usermod -G dialout -a <username>" << endl;
-    OutputStreamDescriptor = open(DeviceAddr.c_str(), O_RDWR);
+    StreamDescriptor = open(DeviceAddr.c_str(), O_RDWR);
+    if (StreamDescriptor == -1)
+        cout << "Can't open " << DeviceAddr << ". Maybe you should execute sudo usermod -G dialout -a <username>" << endl;
 }
 
 TArduinoCommands::~TArduinoCommands() {
-    //OutputStream->close();
+    close(StreamDescriptor);
+}
+
+void TArduinoCommands::SendByte(const unsigned char value) const {
+    write(StreamDescriptor, &value, 1);
+}
+
+unsigned char TArduinoCommands::RecieveByte() const {
+    unsigned char result;
+    read(StreamDescriptor, &result, 1);
+    return result;
 }
 
 void TArduinoCommands::SetMotorSpeedAndDirection(const bool isLeft, const double speed, const bool forward) {
-    unsigned char c;
-    unsigned char r;
+    SendByte(isLeft ? LeftMotorCommand : RightMotorCommand);
+    SendByte(speed * 255);
+    SendByte(forward ? 0 : 1);
+}
 
-    c = isLeft ? 0 : 1;
-    write(OutputStreamDescriptor, &c, 1);
+void TArduinoCommands::SetBothMotorsSpeedAndDirection(const double speed, const bool forward) {
+    for (ui32 i = 0; i < 2; ++i) {
+        SetMotorSpeedAndDirection(i, speed, forward);
+    }
+}
 
-    read(OutputStreamDescriptor, &r, 1);
-    cout << int(r) << endl;
-
-    c = speed * 255;
-    write(OutputStreamDescriptor, &c, 1);
-
-    read(OutputStreamDescriptor, &r, 1);
-    cout << int(r) << endl;
-
-    c = forward ? 0 : 1;
-    write(OutputStreamDescriptor, &c, 1);
-
-    read(OutputStreamDescriptor, &r, 1);
-    cout << int(r) << endl;
+ui32 TArduinoCommands::GetDistance() {
+    SendByte(DistanceCommand);
+    unsigned char highByte = RecieveByte();
+    unsigned char lowByte = RecieveByte();
+    return highByte * 256 + lowByte;
 }

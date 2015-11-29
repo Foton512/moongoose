@@ -1,8 +1,11 @@
 #include "goose_brains.h"
+
+#include <unistd.h>
+
 #include <iostream>
 #include <exception>
 #include <sstream>
-#include <unistd.h>
+#include <string>
 
 using namespace std;
 using namespace cv;
@@ -15,16 +18,32 @@ TGooseBrains::TGooseBrains(const ui32 cameraIndex, const string& mjpgStreamerFil
     , StreamWidth(streamWidth)
     , StreamHeight(streamHeight)
     , Delay(delay)
+    , ArduinoCommands()
 {
     if (!Camera.isOpened()) {
         stringstream stream;
-        stream << "Can't open /dev/video/" << cameraIndex;
+        stream << "Can't open /dev/video" << cameraIndex;
         throw runtime_error(stream.str());
     }
 }
 
 TGooseBrains::~TGooseBrains() {
+    StopMoving();
     Camera.release();
+}
+
+void TGooseBrains::MoveStraight(const bool forward) {
+    ArduinoCommands.SetBothMotorsSpeedAndDirection(1, forward);
+}
+
+void TGooseBrains::Rotate(const bool left) {
+    for (ui32 i = 0; i < 2; ++i) {
+        ArduinoCommands.SetMotorSpeedAndDirection(i, 1, (left && i || !left && !i) ? true : false);
+    }
+}
+
+void TGooseBrains::StopMoving() {
+    ArduinoCommands.SetBothMotorsSpeedAndDirection(0, true);
 }
 
 void TGooseBrains::MainLoop() {
@@ -38,6 +57,19 @@ void TGooseBrains::MainLoop() {
         imwrite(MJPGStreamerFileName, resizedFrame);
 
         usleep(Delay);
-        cout << iter << endl;
+    }
+}
+
+void TGooseBrains::ProcessExternalEvent(const std::string& event) {
+    if (event == "forward") {
+        MoveStraight(true);
+    } else if (event == "backward") {
+        MoveStraight(false);
+    } else if (event == "left") {
+        Rotate(true);
+    } else if (event == "right") {
+        Rotate(false);
+    } else if (event == "stop") {
+        StopMoving();
     }
 }
