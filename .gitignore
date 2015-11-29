@@ -6,3 +6,7 @@ install_manifest.txt
 *.swp
 *.swo
 goose_brains/goose_brains
+goose_brains/.ninja_deps
+goose_brains/.ninja_log
+goose_brains/build.ninja
+goose_brains/rules.ninja
