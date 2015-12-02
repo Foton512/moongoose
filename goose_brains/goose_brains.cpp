@@ -32,20 +32,6 @@ TGooseBrains::~TGooseBrains() {
     Camera.release();
 }
 
-void TGooseBrains::MoveStraight(const bool forward) {
-    ArduinoCommands.SetBothMotorsSpeedAndDirection(1, forward);
-}
-
-void TGooseBrains::Rotate(const bool left) {
-    for (ui32 i = 0; i < 2; ++i) {
-        ArduinoCommands.SetMotorSpeedAndDirection(i, 1, (left && i || !left && !i) ? true : false);
-    }
-}
-
-void TGooseBrains::StopMoving() {
-    ArduinoCommands.SetBothMotorsSpeedAndDirection(0, true);
-}
-
 void TGooseBrains::MainLoop() {
     for (ui32 iter = 0; ; ++iter) {
         Mat frame;
@@ -62,7 +48,7 @@ void TGooseBrains::MainLoop() {
 
 void TGooseBrains::ProcessExternalEvent(const std::string& event) {
     if (event == "forward") {
-        MoveStraight(true);
+        KeyboardController.SetKeyState(EKey::Forward, const bool pressed);
     } else if (event == "backward") {
         MoveStraight(false);
     } else if (event == "left") {

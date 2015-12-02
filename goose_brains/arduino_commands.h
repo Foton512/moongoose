@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include <fstream>
+#include <mutex>
 
 class TArduinoCommands {
 public:
@@ -12,7 +13,6 @@ public:
     ~TArduinoCommands();
 
     void SetMotorSpeedAndDirection(const bool isLeft, const double speed, const bool forward);
-    void SetBothMotorsSpeedAndDirection(const double speed, const bool forward);
     ui32 GetDistance();
 private:
     void SendByte(const unsigned char value) const;
@@ -24,4 +24,5 @@ private:
 private:
     std::string DeviceAddr;
     int StreamDescriptor;
+    std::mutex ConnectionMutex;
 };

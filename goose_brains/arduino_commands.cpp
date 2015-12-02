@@ -32,18 +32,16 @@ unsigned char TArduinoCommands::RecieveByte() const {
 }
 
 void TArduinoCommands::SetMotorSpeedAndDirection(const bool isLeft, const double speed, const bool forward) {
+    std::lock_guard<ConnectionMutex> guard;
+
     SendByte(isLeft ? LeftMotorCommand : RightMotorCommand);
     SendByte(speed * 255);
     SendByte(forward ? 0 : 1);
 }
 
-void TArduinoCommands::SetBothMotorsSpeedAndDirection(const double speed, const bool forward) {
-    for (ui32 i = 0; i < 2; ++i) {
-        SetMotorSpeedAndDirection(i, speed, forward);
-    }
-}
-
 ui32 TArduinoCommands::GetDistance() {
+    std::lock_guard<ConnectionMutex> guard;
+
     SendByte(DistanceCommand);
     unsigned char highByte = RecieveByte();
     unsigned char lowByte = RecieveByte();

@@ -2,6 +2,8 @@
 
 #include "defaults.h"
 #include "arduino_commands.h"
+#include "motion_state.h"
+#include "keyboard_controller.h"
 
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/opencv.hpp"
@@ -28,4 +30,6 @@ private:
     cv::VideoCapture Camera;
     ui32 Delay;
     TArduinoCommands ArduinoCommands;
+    TMotionState MotionState;
+    TKeyboardController KeyboardController;
 };
