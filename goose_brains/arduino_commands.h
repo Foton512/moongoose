@@ -12,9 +12,10 @@ public:
     TArduinoCommands();
     ~TArduinoCommands();
 
-    void SetMotorSpeedAndDirection(const bool isLeft, const double speed, const bool forward);
     ui32 GetDistance();
+    void SetMotorsSpeed(const double leftSpeed, const double rightSpeed);
 private:
+    void SetMotorSpeedAndDirection(const bool isLeft, const double speed, const bool forward);
     void SendByte(const unsigned char value) const;
     unsigned char RecieveByte() const;
 private:

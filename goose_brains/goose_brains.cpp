@@ -18,7 +18,8 @@ TGooseBrains::TGooseBrains(const ui32 cameraIndex, const string& mjpgStreamerFil
     , StreamWidth(streamWidth)
     , StreamHeight(streamHeight)
     , Delay(delay)
-    , ArduinoCommands()
+    , MotionController(ArduinoCommands)
+    , CommandDispatcher(MotionController)
 {
     if (!Camera.isOpened()) {
         stringstream stream;
@@ -28,7 +29,7 @@ TGooseBrains::TGooseBrains(const ui32 cameraIndex, const string& mjpgStreamerFil
 }
 
 TGooseBrains::~TGooseBrains() {
-    StopMoving();
+    MotionController.SetMotionState(TMotionState());
     Camera.release();
 }
 
@@ -46,16 +47,6 @@ void TGooseBrains::MainLoop() {
     }
 }
 
-void TGooseBrains::ProcessExternalEvent(const std::string& event) {
-    if (event == "forward") {
-        KeyboardController.SetKeyState(EKey::Forward, const bool pressed);
-    } else if (event == "backward") {
-        MoveStraight(false);
-    } else if (event == "left") {
-        Rotate(true);
-    } else if (event == "right") {
-        Rotate(false);
-    } else if (event == "stop") {
-        StopMoving();
-    }
+void TGooseBrains::ProcessExternalCommand(const TCommand& command) {
+    CommandDispatcher.Dispatch(command);
 }

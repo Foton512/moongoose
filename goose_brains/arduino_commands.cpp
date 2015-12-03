@@ -5,6 +5,7 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -31,16 +32,21 @@ unsigned char TArduinoCommands::RecieveByte() const {
     return result;
 }
 
-void TArduinoCommands::SetMotorSpeedAndDirection(const bool isLeft, const double speed, const bool forward) {
-    std::lock_guard<ConnectionMutex> guard;
+void TArduinoCommands::SetMotorsSpeed(const double leftSpeed, const double rightSpeed) {
+    std::lock_guard<std::mutex> guard(ConnectionMutex);
 
+    SetMotorSpeedAndDirection(true, abs(leftSpeed), leftSpeed > 0);
+    SetMotorSpeedAndDirection(false, abs(rightSpeed), rightSpeed > 0);
+}
+
+void TArduinoCommands::SetMotorSpeedAndDirection(const bool isLeft, const double speed, const bool forward) {
     SendByte(isLeft ? LeftMotorCommand : RightMotorCommand);
     SendByte(speed * 255);
     SendByte(forward ? 0 : 1);
 }
 
 ui32 TArduinoCommands::GetDistance() {
-    std::lock_guard<ConnectionMutex> guard;
+    std::lock_guard<std::mutex> guard(ConnectionMutex);
 
     SendByte(DistanceCommand);
     unsigned char highByte = RecieveByte();

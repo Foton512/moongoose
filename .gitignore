@@ -5,6 +5,7 @@ cmake_install.cmake
 install_manifest.txt
 *.swp
 *.swo
+*.swn
 goose_brains/goose_brains
 goose_brains/.ninja_deps
 goose_brains/.ninja_log

@@ -2,8 +2,8 @@
 
 #include "defaults.h"
 #include "arduino_commands.h"
-#include "motion_state.h"
-#include "keyboard_controller.h"
+#include "motion_controller.h"
+#include "command_dispatcher.h"
 
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/opencv.hpp"
@@ -18,11 +18,8 @@ public:
     ~TGooseBrains();
 
     void MainLoop();
-    void ProcessExternalEvent(const std::string& event);
-private:
-    void MoveStraight(const bool forward);
-    void Rotate(const bool left);
-    void StopMoving();
+    void ProcessExternalCommand(const TCommand& command);
+
 private:
     std::string MJPGStreamerFileName;
     ui32 StreamWidth;
@@ -30,6 +27,6 @@ private:
     cv::VideoCapture Camera;
     ui32 Delay;
     TArduinoCommands ArduinoCommands;
-    TMotionState MotionState;
-    TKeyboardController KeyboardController;
+    TMotionController MotionController;
+    TCommandDispatcher CommandDispatcher;
 };

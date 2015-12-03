@@ -15,7 +15,7 @@ void WebSocketServerThread(TGooseBrains& gooseBrains) {
     TWebSocketServer server;
     server.set_message_handler(
         [&gooseBrains](websocketpp::connection_hdl hdl, TWebSocketServer::message_ptr msg) {
-            gooseBrains.ProcessExternalEvent(msg->get_payload());
+            gooseBrains.ProcessExternalCommand(msg->get_payload());
         }
     );
     server.init_asio();
