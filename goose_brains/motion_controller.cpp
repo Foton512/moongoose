@@ -8,9 +8,9 @@ TMotionState::TMotionState(const rapidjson::Value& jsonObj) {
         Direction = EDirectionType::Forward;
     } else if (direction == "backward") {
         Direction = EDirectionType::Backward;
-    } else if (direction == "rotate_cw") {
+    } else if (direction == "rotateCW") {
         Direction = EDirectionType::RotateCW;
-    } else if (direction == "rotate_ccw") {
+    } else if (direction == "rotateCCW") {
         Direction = EDirectionType::RotateCCW;
     }
 
@@ -24,7 +24,7 @@ TMotionState::TMotionState(const rapidjson::Value& jsonObj) {
     }
 
     Speed = jsonObj["speed"].GetDouble();
-    TurnSpeed = jsonObj["turn_speed"].GetDouble();
+    TurnSpeed = jsonObj["turnSpeed"].GetDouble();
 }
 
 void TMotionController::SetMotionState(const TMotionState& motionState) {
@@ -44,11 +44,11 @@ void TMotionController::SendMotionStateToArduino() {
     } else if (MotionState.Direction == EDirectionType::Backward) {
         leftMotorSpeed = rightMotorSpeed = -MotionState.Speed;
     } else if (MotionState.Direction == EDirectionType::RotateCW) {
-        leftMotorSpeed = MotionState.Speed;
+        leftMotorSpeed = MotionState.Speed / 2;
         rightMotorSpeed = -leftMotorSpeed;
     } else if (MotionState.Direction == EDirectionType::RotateCCW) {
-        rightMotorSpeed = MotionState.Speed;
-        leftMotorSpeed = -leftMotorSpeed;
+        rightMotorSpeed = MotionState.Speed / 2;
+        leftMotorSpeed = -rightMotorSpeed;
     }
 
     if (MotionState.Turn != ETurnType::None &&

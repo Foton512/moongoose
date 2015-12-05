@@ -4,7 +4,7 @@
 void TCommandDispatcher::Dispatch(const rapidjson::Document& command) {
     const auto& type = command["type"];
 
-    if (type == "set_motion_state") {
+    if (type == "setMotionState") {
         MotionController.SetMotionState(TMotionState(command["data"]));
     }
 }

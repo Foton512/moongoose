@@ -1,5 +1,7 @@
 #include "goose_brains.h"
 #include "rapidjson/document.h"
+#include "rapidjson/writer.h"
+#include "rapidjson/stringbuffer.h"
 
 #include <websocketpp/config/asio_no_tls.hpp>
 #include <websocketpp/server.hpp>
@@ -9,6 +11,8 @@
 #include <boost/version.hpp>
 #include <functional>
 
+using namespace std;
+
 void WebSocketServerThread(TGooseBrains& gooseBrains) {
     using TWebSocketServer = websocketpp::server<websocketpp::config::asio>;
     TWebSocketServer server;
@@ -16,6 +20,12 @@ void WebSocketServerThread(TGooseBrains& gooseBrains) {
         [&gooseBrains](websocketpp::connection_hdl hdl, TWebSocketServer::message_ptr msg) {
             rapidjson::Document document;
             document.Parse(msg->get_payload().c_str());
+
+            //rapidjson::StringBuffer buffer;
+            //rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+            //document.Accept(writer);
+            //cout << buffer.GetString() << endl;
+
             gooseBrains.ProcessExternalCommand(document);
         }
     );
