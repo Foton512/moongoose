@@ -1,5 +1,5 @@
 $(function() {
-    var socket = new WebSocket("ws://192.168.1.234:9012");
+    var socket = new ReconnectingWebSocket("ws://192.168.1.234:9012", null, {debug: false, reconnectInterval: 1000});
 
     var keyboardState = {
         forward: false,
