@@ -1,7 +1,7 @@
 #pragma once
 
-#include "command.h"
 #include "motion_controller.h"
+#include "rapidjson/document.h"
 
 class TCommandDispatcher {
 public:
@@ -9,7 +9,7 @@ public:
         : MotionController(motionController)
     { }
 
-    void Dispatch(const TCommand& command);
+    void Dispatch(const rapidjson::Document& command);
 
 private:
     TMotionController& MotionController;

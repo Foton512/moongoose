@@ -1,4 +1,5 @@
 #include "goose_brains.h"
+#include "rapidjson/document.h"
 
 #include <unistd.h>
 
@@ -47,6 +48,6 @@ void TGooseBrains::MainLoop() {
     }
 }
 
-void TGooseBrains::ProcessExternalCommand(const TCommand& command) {
+void TGooseBrains::ProcessExternalCommand(const rapidjson::Document& command) {
     CommandDispatcher.Dispatch(command);
 }

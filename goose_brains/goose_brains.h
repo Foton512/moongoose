@@ -4,6 +4,7 @@
 #include "arduino_commands.h"
 #include "motion_controller.h"
 #include "command_dispatcher.h"
+#include "rapidjson/document.h"
 
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/opencv.hpp"
@@ -18,7 +19,7 @@ public:
     ~TGooseBrains();
 
     void MainLoop();
-    void ProcessExternalCommand(const TCommand& command);
+    void ProcessExternalCommand(const rapidjson::Document& command);
 
 private:
     std::string MJPGStreamerFileName;

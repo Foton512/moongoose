@@ -1,6 +1,7 @@
 #pragma once
 
 #include "arduino_commands.h"
+#include "rapidjson/document.h"
 
 enum class EDirectionType {
       Forward
@@ -16,11 +17,16 @@ enum class ETurnType {
     , None
 };
 
-struct TMotionState {
+class TMotionState {
+public:
     EDirectionType Direction = EDirectionType::None;
     ETurnType Turn = ETurnType::None;
     double Speed = 1;
     double TurnSpeed = 0.8;
+
+public:
+    TMotionState() = default;
+    TMotionState(const rapidjson::Value& jsonObj);
 
     bool operator ==(const TMotionState& rhs) const {
         return Direction == rhs.Direction &&

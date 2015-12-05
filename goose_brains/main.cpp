@@ -1,4 +1,5 @@
 #include "goose_brains.h"
+#include "rapidjson/document.h"
 
 #include <websocketpp/config/asio_no_tls.hpp>
 #include <websocketpp/server.hpp>
@@ -8,14 +9,14 @@
 #include <boost/version.hpp>
 #include <functional>
 
-using namespace std;
-
 void WebSocketServerThread(TGooseBrains& gooseBrains) {
     using TWebSocketServer = websocketpp::server<websocketpp::config::asio>;
     TWebSocketServer server;
     server.set_message_handler(
         [&gooseBrains](websocketpp::connection_hdl hdl, TWebSocketServer::message_ptr msg) {
-            gooseBrains.ProcessExternalCommand(msg->get_payload());
+            rapidjson::Document document;
+            document.Parse(msg->get_payload().c_str());
+            gooseBrains.ProcessExternalCommand(document);
         }
     );
     server.init_asio();
@@ -30,7 +31,6 @@ int main(int argc, char** argv) {
     std::thread webSocketServerThread(WebSocketServerThread, std::ref(gooseBrains));
     webSocketServerThread.detach();
     gooseBrains.MainLoop();
-
 
     return 0;
 }
