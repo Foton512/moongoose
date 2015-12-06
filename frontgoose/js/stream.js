@@ -1,34 +1,42 @@
-var imageNr = 0; // Serial number of current image
-var finished = new Array(); // References to img objects which have finished downloading
-var paused = false;
+var imageNumber = 0; // Serial number of current image
+var finished = new Array(); // References to image objects which have finished downloading
 
 function createImageLayer() {
-    var img = new Image();
-    img.style.position = "absolute";
-    img.style.zIndex = -1;
-    img.onload = imageOnload;
-    img.onclick = imageOnclick;
-    img.src = "http://192.168.1.234:8080/?action=snapshot&n=" + (++imageNr);
+    var image = new Image();
+    image.style.position = "absolute";
+    var streamImage = document.getElementById("streamImage");
+    image.width = streamImage.width;
+    image.height = streamImage.height;
+    image.style.zIndex = -1;
+    image.onload = imageOnload;
+    image.src = "http://192.168.1.234:8080/?action=snapshot&n=" + (++imageNumber);
     var stream = document.getElementById("stream");
-    stream.insertBefore(img, stream.firstChild);
+    stream.insertBefore(image, stream.firstChild);
 }
 
 // Two layers are always present (except at the very beginning), to avoid flicker
 function imageOnload() {
-    this.style.zIndex = imageNr; // Image finished, bring to front!
+    this.style.zIndex = imageNumber; // Image finished, bring to front!
     while (1 < finished.length) {
         var del = finished.shift(); // Delete old image(s) from document
         del.parentNode.removeChild(del);
     }
     finished.push(this);
-    if (!paused) createImageLayer();
+    createImageLayer();
 }
 
-function imageOnclick() { // Clicking on the image will pause the stream
-    paused = !paused;
-    if (!paused) createImageLayer();
+function setStreamImageSize() {
+    var streamImage = document.getElementById("streamImage");
+    var menuHeight = $("#topBar").height();
+    streamImage.style.maxWidth = $(window).width().toString() + "px";
+    streamImage.style.maxHeight = ($(window).height() - menuHeight).toString() + "px";
 }
 
 $(function() {
+    setStreamImageSize();
     createImageLayer();
 })
+
+$(window).resize(function() {
+    setStreamImageSize();
+});
