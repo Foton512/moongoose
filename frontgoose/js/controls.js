@@ -81,4 +81,44 @@ $(function() {
     document.onkeyup = function(event) {
         processKeyboardEvent(event.keyCode, false)
     }
+    $("#upButton").on({
+        'touchstart' : function() {
+            keyboardState.forward = true;
+            keyboardState.updateCommand();
+        },
+        'touchend' : function() {
+            keyboardState.forward = false;
+            keyboardState.updateCommand();
+        }
+    });
+    $("#downButton").on({
+        'touchstart' : function() {
+            keyboardState.backward = true;
+            keyboardState.updateCommand();
+        },
+        'touchend' : function() {
+            keyboardState.backward = false;
+            keyboardState.updateCommand();
+        }
+    });
+    $("#leftButton").on({
+        'touchstart' : function() {
+            keyboardState.left = true;
+            keyboardState.updateCommand();
+        },
+        'touchend' : function() {
+            keyboardState.left = false;
+            keyboardState.updateCommand();
+        }
+    });
+    $("#rightButton").on({
+        'touchstart' : function() {
+            keyboardState.right = true;
+            keyboardState.updateCommand();
+        },
+        'touchend' : function() {
+            keyboardState.right = false;
+            keyboardState.updateCommand();
+        }
+    });
 });
