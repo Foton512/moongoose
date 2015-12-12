@@ -121,4 +121,24 @@ $(function() {
             keyboardState.updateCommand();
         }
     });
+    $("#rotateCCWButton").on({
+        'touchstart' : function() {
+            keyboardState.rotateCCW = true;
+            keyboardState.updateCommand();
+        },
+        'touchend' : function() {
+            keyboardState.rotateCCW = false;
+            keyboardState.updateCommand();
+        }
+    });
+    $("#rotateCWButton").on({
+        'touchstart' : function() {
+            keyboardState.rotateCW = true;
+            keyboardState.updateCommand();
+        },
+        'touchend' : function() {
+            keyboardState.rotateCW = false;
+            keyboardState.updateCommand();
+        }
+    });
 });

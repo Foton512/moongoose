@@ -23,9 +23,21 @@
             <section class="top-bar-section">
                 <ul class="center-buttons">
                     <li class="divider"></li>
-                    <li><a href="#">Ручное управление</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Ручное управление</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Кнопки</a></li>
+                            <li><a href="#">MYO</a></li>
+                        </ul>
+                    </li>
                     <li class="divider"></li>
-                    <li><a href="#">Автономный режим</a></li>
+                    <li class="has-dropdown">
+                        <a href="#">Автономно</a>
+                        <ul class="dropdown">
+                            <li><a href="#">Бесцельная езда</a></li>
+                            <li><a href="#">Ездить за цветом</a></li>
+                        </ul>
+                    </li>
                     <li class="divider"></li>
                     <li><a href="#"><i class="fi-widget"></i> Настройки</a></li>
                     <li class="divider"></li>
@@ -37,18 +49,12 @@
             <div class="stream" id="stream"><img id="streamImage" src="img/blank_camera.png"></div>
         </div>
 
-        <div class="touch-button" id="upButton">
-            U
-        </div>
-        <div class="touch-button" id="downButton">
-            D
-        </div>
-        <div class="touch-button" id="upButton">
-            L
-        </div>
-        <div class="touch-button" id="downButton">
-            R
-        </div>
+        <div class="touch-button" id="upButton"><i class="fi-arrow-up touch-button-text"></i></div>
+        <div class="touch-button" id="downButton"><i class="fi-arrow-down touch-button-text"></i></div>
+        <div class="touch-button flip" id="rotateCCWButton"><i class="fi-loop touch-button-text"></i></div>
+        <div class="touch-button" id="rotateCWButton"><i class="fi-loop touch-button-text"></i></div>
+        <div class="touch-button" id="leftButton"><i class="fi-arrow-left touch-button-text"></i></div>
+        <div class="touch-button" id="rightButton"><i class="fi-arrow-right touch-button-text"></i></div>
 
         <script src="js/vendor/jquery.js"></script>
         <script src="js/foundation.min.js"></script>

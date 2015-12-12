@@ -25,18 +25,6 @@ function imageOnload() {
     createImageLayer();
 }
 
-//function setStreamImageSize() {
-//    var streamImage = document.getElementById("streamImage");
-//    var menuHeight = $("#topBar").height();
-//    streamImage.style.maxWidth = $(window).width().toString() + "px";
-//    streamImage.style.maxHeight = ($(window).height() - menuHeight).toString() + "px";
-//}
-
 $(function() {
-    //setStreamImageSize();
     createImageLayer();
 })
-
-$(window).resize(function() {
-    setStreamImageSize();
-});
