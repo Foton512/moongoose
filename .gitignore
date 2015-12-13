@@ -12,3 +12,5 @@ goose_brains/.ninja_deps
 goose_brains/.ninja_log
 goose_brains/build.ninja
 goose_brains/rules.ninja
+frontgoose/.idea
+frontgoose/node_modules

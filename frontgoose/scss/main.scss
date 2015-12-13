@@ -1,0 +1,50 @@
+body {
+  background-color: #52534e;
+}
+@media only screen and (min-width: 40em) {
+  .top-bar {
+    text-align: center;
+  }
+  ul.center-buttons {
+    display: inline-block;
+  }
+  .logo {
+    position: absolute;
+  }
+}
+.logo {
+  max-width: 2rem;
+  margin-top: -3px;
+  margin-left: 5px;
+  top: 1px;
+}
+.menu-icon {
+  padding-top: 1.2rem;
+}
+.top-bar {
+  background: #e06429;
+}
+.top-bar-section li:not(.has-form) a:not(.button) {
+  background: #e06429;
+}
+.top-bar-section .has-dropdown {
+  background: #00FF00;
+}
+.touch-button {
+  display: table;
+  color: #fff;
+  border: 2px solid #f4ecd5;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  position: absolute;
+  z-index: 1000000;
+  font-size: 10vmin;
+}
+.touch-button-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+.flip {
+  transform: scale(-1, 1);
+}
