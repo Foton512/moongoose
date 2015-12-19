@@ -25,7 +25,7 @@
                     <li class="has-dropdown">
                         <a href="#">Ручное управление</a>
                         <ul class="dropdown">
-                            <li><a href="#">Кнопки</a></li>
+                            <li><a href="#">С клавиатуры</a></li>
                             <li><a href="#">MYO</a></li>
                         </ul>
                     </li>
@@ -43,24 +43,43 @@
                 </ul>
             </section>
         </nav>
+        <div class="off-canvas-wrap" data-offcanvas>
+            <nav class="tab-bar">
+                <section class="left-small">
+                    <a class="left-off-canvas-toggle menu-icon" href="#"><span></span></a>
+                </section>
+            </nav>
+            <aside class="left-off-canvas-menu">
+                <ul class="off-canvas-list">
+                    <li><label>Ручное управление</label></li>
+                    <li><a href="#">С клавиатуры</a></li>
+                    <li><a href="#">MYO</a></li>
+                    <li><label>Автономно</label></li>
+                    <li><a href="#">Бесцельная езда</a></li>
+                    <li><a href="#">Ездить за цветом</a></li>
+                    <li><label></label></li>
+                    <li><a href="#">Настройки</a></li>
+                </ul>
+            </aside>
+            <section class="main-section">
+                <div class="text-center">
+                    <div class="stream" id="stream"><img id="streamImage" src="img/blank_camera.png"></div>
+                </div>
 
-        <div class="text-center">
-            <div class="stream" id="stream"><img id="streamImage" src="img/blank_camera.png"></div>
+                <div class="touch-button" id="upButton"><i class="fi-arrow-up touch-button-text"></i></div>
+                <div class="touch-button" id="downButton"><i class="fi-arrow-down touch-button-text"></i></div>
+                <div class="touch-button flip" id="rotateCCWButton"><i class="fi-loop touch-button-text"></i></div>
+                <div class="touch-button" id="rotateCWButton"><i class="fi-loop touch-button-text"></i></div>
+                <div class="touch-button" id="leftButton"><i class="fi-arrow-left touch-button-text"></i></div>
+                <div class="touch-button" id="rightButton"><i class="fi-arrow-right touch-button-text"></i></div>
+            </section>
+            <a class="exit-off-canvas"></a>
         </div>
 
-        <div class="touch-button" id="upButton"><i class="fi-arrow-up touch-button-text"></i></div>
-        <div class="touch-button" id="downButton"><i class="fi-arrow-down touch-button-text"></i></div>
-        <div class="touch-button flip" id="rotateCCWButton"><i class="fi-loop touch-button-text"></i></div>
-        <div class="touch-button" id="rotateCWButton"><i class="fi-loop touch-button-text"></i></div>
-        <div class="touch-button" id="leftButton"><i class="fi-arrow-left touch-button-text"></i></div>
-        <div class="touch-button" id="rightButton"><i class="fi-arrow-right touch-button-text"></i></div>
 
         <script src="js/vendor/jquery.js"></script>
         <script src="js/foundation.min.js"></script>
         <script src="js/src/reconnecting-websocket.js"></script>
-        <script>
-            $(document).foundation();
-        </script>
         <script src="js/app.min.js"></script>
     </body>
 </html>

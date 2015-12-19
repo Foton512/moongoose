@@ -67,3 +67,10 @@ $(function() {
 $(window).resize(function() {
     positionElements();
 });
+
+$(document).foundation({
+    offcanvas : {
+        open_method: "overlap",
+        close_on_click: true
+    }
+});
