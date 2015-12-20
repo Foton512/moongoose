@@ -5,6 +5,11 @@ var gulp = require("gulp"),
     rename = require("gulp-rename"),
     concat = require("gulp-concat"),
     uglify = require("gulp-uglify");
+    
+function swallowError (error) {
+    console.log(error.toString());
+    this.emit('end');
+}
 
 gulp.task("process-styles", function() {
     return gulp.src("scss/*.scss")
@@ -12,6 +17,7 @@ gulp.task("process-styles", function() {
             style: "expanded",
             includePaths: ["bower_components/foundation/scss"]
         }))
+        .on("error", swallowError)
         .pipe(autoprefixer("last 2 version"))
         .pipe(gulp.dest("css/"))
         .pipe(rename({suffix: ".min"} ))
@@ -28,7 +34,7 @@ gulp.task("process-scripts", function() {
         .pipe(gulp.dest("js/"))
 });
 
-gulp.task("default", function() {
+gulp.task("default", ["process-styles", "process-scripts"], function() {
     gulp.watch("scss/*.scss", ["process-styles"])
     gulp.watch("js/src/*.js", ["process-scripts"])
 });

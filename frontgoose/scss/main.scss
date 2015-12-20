@@ -42,6 +42,7 @@ body {
         position: absolute;
         z-index: 1000000;
         font-size: 10vmin;
+        user-select: none;
     }
     .touch-button-text {
         display: table-cell;
@@ -60,4 +61,7 @@ body {
 }
 .offcanvas-overlap .left-off-canvas-menu {
     z-index: 2000001;
+}
+img {
+    user-select: none;
 }
