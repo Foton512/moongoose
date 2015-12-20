@@ -5587,7 +5587,7 @@ ul.off-canvas-list {
     ul.off-canvas-list li a:hover {
       background: #ea1c10; }
     ul.off-canvas-list li a:active {
-      background: #242424; }
+      background: #ea1c10; }
 
 .move-right > .inner-wrap {
   -webkit-transform: translate3d(15.625rem, 0, 0);
@@ -5599,7 +5599,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -5621,7 +5621,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -5643,7 +5643,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -5665,7 +5665,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -5689,7 +5689,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -5712,7 +5712,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -5735,7 +5735,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -5758,7 +5758,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -5781,7 +5781,7 @@ ul.off-canvas-list {
   cursor: pointer;
   transition: background 300ms ease;
   -webkit-tap-highlight-color: transparent;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0);
   bottom: 0;
   display: block;
   left: 0;
@@ -6356,7 +6356,7 @@ body {
     z-index: 2000000;
     display: block !important; }
 
-.offcanvas-overlap .left-off-canvas-menu {
+.offcanvas-overlap .left-off-canvas-menu, .left-off-canvas-menu {
   z-index: 2000001; }
 
 img {

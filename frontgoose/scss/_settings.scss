@@ -861,7 +861,7 @@ $tabbar-right-section-border: $tabbar-left-section-border;
 // $off-canvas-width: rem-calc(250);
 $off-canvas-bg: $red;
 $off-canvas-bg-hover: scale-color($off-canvas-bg, $lightness: -15%);
-// $off-canvas-bg-active: scale-color($tabbar-bg, $lightness: -30%);
+$off-canvas-bg-active: $off-canvas-bg-hover;
 
 // Off Canvas Menu List Variables
 // $off-canvas-label-padding: .3rem rem-calc(15);
@@ -902,7 +902,7 @@ $off-canvas-label-bg: scale-color($off-canvas-bg, $lightness: -30%);
 // $off-canvas-overlay-transition: background 300ms ease;
 // $off-canvas-overlay-cursor: pointer;
 // $off-canvas-overlay-box-shadow: -4px 0 4px rgba($black, .5), 4px 0 4px rgba($black, .5);
-// $off-canvas-overlay-background: rgba($white, .2);
+$off-canvas-overlay-background: rgba($white, .0);
 // $off-canvas-overlay-background-hover: rgba($white, .05);
 
 // Transition Variables
