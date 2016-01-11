@@ -1,5 +1,7 @@
 # Moongoose
 
+Goose robot with computer vision. Based on raspberry pi and arduino. Has friendly frontend.
+
 ## Installation
 * Install Raspbian Jessie - https://www.raspberrypi.org/downloads/raspbian/
 * Configure static IP address - http://weworkweplay.com/play/automatically-connect-a-raspberry-pi-to-a-wifi-network/ . I use IP `192.168.1.234`
