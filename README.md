@@ -1,4 +1,5 @@
 # Moongoose
+Goose robot with computer vision. Based on raspberry pi and arduino. Has friendly frontend.
 
 ## Installation
 ##### Install Raspbian Jessie
