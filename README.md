@@ -50,16 +50,27 @@ sudo reboot
 ```
 You can test camera by running `raspistill -o test.jpg`
 ##### Building goose_brains
-Build OpenCV 3
+Build OpenCV 3 (http://www.pyimagesearch.com/2015/10/26/how-to-install-opencv-3-on-raspbian-jessie/)
 ```
 sudo apt-get update
 sudo apt-get upgrade
-
-sudo apt-get install build-essential cmake cmake-curses-gui \
-    pkg-config libpng12-0 libpng12-dev libpng++-dev \
-    libpng3 libpnglite-dev zlib1g-dbg zlib1g zlib1g-dev \
-    pngtools libtiff4-dev libtiff4 libtiffxx0c2 libtiff-tools libeigen3-dev
-```
-```
-sudo apt-get install cmake
+sudo rpi-update
+sudo reboot
+sudo apt-get install build-essential git cmake pkg-config
+sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libxvidcore-dev libx264-dev
+sudo apt-get install libgtk2.0-dev
+sudo apt-get install libatlas-base-dev gfortran
+cd ~/downloads
+wget -O opencv.zip https://github.com/Itseez/opencv/archive/3.0.0.zip
+unzip opencv.zip
+wget -O opencv_contrib.zip https://github.com/Itseez/opencv_contrib/archive/3.0.0.zip
+unzip opencv_contrib.zip
+cd opencv-3.0.0
+mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D INSTALL_C_EXAMPLES=ON -D OPENCV_EXTRA_MODULES_PATH=~/downloads/opencv_contrib-3.0.0/modules -D BUILD_EXAMPLES=ON ..
+make -j4 # IT TAKES 2 HOURS!!!
+sudo make install
 ```
