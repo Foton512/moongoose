@@ -131,9 +131,7 @@ sudo apt-get install nodejs npm
 Then install required packets:
 ```
 cd ~/moongoose/frontend
-# Next two commands take about an hour each. And maybe only one of them is required, I don't know. And there must be a way to do it easier
-npm install gulp gulp-sass gulp-autoprefixer gulp-minify-css gulp-rename gulp-concat gulp-uglify end-of-stream stream-consume sequencify gulp-util defaults through2 glob-stream
-sudo npm install --global gulp gulp-sass gulp-autoprefixer gulp-minify-css gulp-rename gulp-concat gulp-uglify end-of-stream stream-consume sequencify gulp-util defaults
+npm install --save-dev
 ```
 ##### Running everything
 There is no single script yet. So you have to run several processes. For example you can run each process in separate tmux tab  
